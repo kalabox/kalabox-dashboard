@@ -1,3 +1,25 @@
+# Kalabox Dasboard
+
+This is a fork of the github.com/chillu/github-dashing project. For Q'plah you will need to add a `.env` file like so.
+
+```
+ORGAS=kalabox
+SINCE=3.months.ago.beginning_of_month
+LEADERBOARD_SKIP_ORGA_MEMBERS=
+GITHUB_LOGIN=pirog
+GITHUB_OAUTH_TOKEN=KEEPITSECRETKEEPITSAFE
+LEADERBOARD_WEIGHTING=issues_opened=5,issues_closed=5,pulls_opened=10,pulls_closed=5,pulls_comments=1,issues_comments=1,commits_comments=1,commits=20
+TRAVIS_BRANCH_BLACKLIST={}
+# Google key as a single line (see README)
+GOOGLE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n"
+GOOGLE_SECRET=notasecret
+GOOGLE_ISSUER=xxxxxxxxxxx@developer.gserviceaccount.com
+GOOGLE_PROJECT_ID=
+SENTRY_DSN=
+```
+
+Original docs no follow:
+
 # Github Contribution Dashboard
 
 [![Build Status](https://travis-ci.org/chillu/github-dashing.png?branch=master)](https://travis-ci.org/chillu/github-dashing)
@@ -19,7 +41,7 @@ relative measures over long-term data. For example, the leaderboard only inspect
 of contributions, allowing new contributors to get to the top more easily.
 
 Preview: The [SilverStripe CMS](http://silverstripe.org) project, aggregating over 50 repositories
-that the project either maintains or actively contributes to. 
+that the project either maintains or actively contributes to.
 View it live at [github-dashing.herokuapp.com](http://github-dashing.herokuapp.com/default).
 ![Preview](assets/images/preview.png?raw=true)
 
@@ -33,7 +55,7 @@ Preview: Travis build status with per-branch status and code quality indicators
 ![Preview](assets/images/preview_travis.png?raw=true)
 
 The dashboard is based on [Dashing](http://shopify.github.com/dashing), a Ruby web application
-built on the [Sinatra](http://www.sinatrarb.com) framework. It uses the Github API rather than 
+built on the [Sinatra](http://www.sinatrarb.com) framework. It uses the Github API rather than
 [githubarchive.org](http://githubarchive.org) data dumps because of the immediate nature
 of dashboard update (refreshes every hour by default). The code used to be based
 on Google BigQuery aggregation, but this turned out to be infeasible due to query size and BigQuery pricing.
@@ -51,7 +73,7 @@ All configuration is optional, apart from either `ORGAS` or `REPOS`.
  * `ORGAS`: Github organizations. Separate multiple by comma. Will use all repos for an organization.
    Example: `silverstripe,silverstripe-labs`.
  * `REPOS`: Github repository identifiers. Separate multiple by comma. If used alongside `ORGAS`, the logic will add
-   all mentioned repos to the ones retrieved from `ORGAS`. 
+   all mentioned repos to the ones retrieved from `ORGAS`.
    Example: `silverstripe/silverstripe-framework,silverstripe/silverstripe-cms`
  * `SINCE`: Date string, or relative time parsed through [http://guides.rubyonrails.org/active_support_core_extensions.html](ActiveSupport). Example: `12.months.ago.beginning_of_month`, `2012-01-01`
  * `GITHUB_LOGIN`: Github authentication is optional, but recommended
@@ -102,12 +124,12 @@ Now you can browse the dashboard at `http://localhost:3030/default`.
 
 ## Tasks
 
-The Dashing jobs query for their data whenever the server is started, and then with a frequency of 1h by default. 
+The Dashing jobs query for their data whenever the server is started, and then with a frequency of 1h by default.
 
 ## Heroku Deployment
 
-Since Dashing is simply a Sinatra Rack app under the hood, deploying is a breeze. 
-It takes around 30 seconds to do :) 
+Since Dashing is simply a Sinatra Rack app under the hood, deploying is a breeze.
+It takes around 30 seconds to do :)
 
 First, [sign up](https://id.heroku.com/signup) for the free service.
 [Download](https://devcenter.heroku.com/articles/quickstart) the dev tools
@@ -122,7 +144,7 @@ Now you're ready to add your app to Heroku:
 	git add .
 	git commit -m "My beautiful dashboard"
 
-	# Create the application on Heroku 
+	# Create the application on Heroku
 	heroku apps:create myapp
 
 	# Push the application to Heroku
