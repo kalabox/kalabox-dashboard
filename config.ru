@@ -1,3 +1,4 @@
+require 'active_support'
 require 'dashing'
 require 'faraday'
 require 'faraday/http_cache'
@@ -21,7 +22,7 @@ use Raven::Rack
 Raven.configure do |config|
   if ENV['SENTRY_DSN']
   	# TODO Fix "undefined method `send_in_current_environment?'" and disable for dev
-  	config.environments = %w[ production development ] 
+  	config.environments = %w[ production development ]
   else
   	config.environments = []
   end
