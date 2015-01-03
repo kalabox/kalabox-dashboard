@@ -59,7 +59,7 @@ h2 .value-add {
 		}
 
 		&.widget-graph .y_ticks {
-			fill: rgba(255,255,255,0.5);	
+			fill: rgba(255,255,255,0.5);
 		}
 
 	}
@@ -73,7 +73,7 @@ h2 .value-add {
 			position: inherit;
 			top: auto;
 			bottom: auto;
-		}	
+		}
 	}
 
 	&.widget-table {
@@ -85,7 +85,7 @@ h2 .value-add {
 				color: $red;
 			}
 		}
-		
+
 	}
 
 	&.leaderboard {
@@ -143,9 +143,10 @@ h2 .value-add {
 
 		li {
 			float: left;
-			margin: 0 5px 5px 0;
-			padding: 3px;
-			border-radius: 3px;
+			margin: 0px 5px 5px 0;
+			padding: 7px;
+			border-radius: 52px;
+			width: 350px;
 
 			* {
 				vertical-align: middle;
@@ -241,8 +242,8 @@ h2 .value-add {
 			li {
 				font-size: 11px;
 				border-radius: 3px;
-				margin: 0 5px 0 0;	
-				padding: 0;	
+				margin: 0 5px 0 0;
+				padding: 0;
 			}
 		}
 	}
