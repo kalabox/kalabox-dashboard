@@ -31,7 +31,6 @@ Dashboard to monitor the health of github projects based on their contribution s
  - A leaderboard aggregates a score for the last 30 days on each contributor.
  - Contributor scores based on activity in commits as well as in comments and pull requests.
  - [Travis CI](http://travis-ci.org) build status across multiple branches
- - [Scrutinizer CI](https://scrutinizer-ci.com/) code quality metrics
  - Trend projections for current month on issues opened, issues closed and pull requests
  - Quick integration of other data sources through a common widget framework
  - Easy hosting through [Heroku](http://heroku.com)

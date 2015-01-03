@@ -4,7 +4,7 @@ require 'dashing'
 require File.expand_path('../../lib/helper', __FILE__)
 
 
-SCHEDULER.every '2m', :first_in => '1s' do |job|
+SCHEDULER.every '10m', :first_in => '1s' do |job|
 	backend = GithubBackend.new()
 	series = [[],[]]
 	pulls_by_period = backend.pull_count_by_status(
