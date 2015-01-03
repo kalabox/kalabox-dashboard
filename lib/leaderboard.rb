@@ -25,7 +25,7 @@ class Leaderboard
 	# - since: (Datetime)
 	# - weighting: (Hash) Event names to a numerical multiplier. Set to nil to disable weighting
 	# - edits_weighting: (Hash) Constraints for LOC counts.
-	#   Required keys: commits_additions_max, commits_additions_loc_threshold, 
+	#   Required keys: commits_additions_max, commits_additions_loc_threshold,
 	#   commits_deletions_max, commits_deletions_loc_threshold
 	# - limit: (Integer) Maximum number of users to show in board
 	# - days_interval: (Integer) Number of days to check for a period
@@ -33,7 +33,7 @@ class Leaderboard
 	# - skip_orga_members: (Array) Github organization names for which to exclude members.
 	def get(opts={})
 		default_opts = {
-			:days_interval => 30,
+			:days_interval => 365,
 			:limit => 15,
 			:edits_weighting => {
 				'commits_additions_max'=>100,
@@ -80,7 +80,7 @@ class Leaderboard
 			@backend.issue_count_by_author(opts).to_a +
 			@backend.pull_count_by_author(opts).to_a
 		)
-		# TODO Pretty much everything below would be better expressed in 
+		# TODO Pretty much everything below would be better expressed in
 		# SQL with 1/4th the lines of code
 
 		# Group events by author, then by period
