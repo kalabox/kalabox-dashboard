@@ -1,6 +1,6 @@
 <h1 class="title">
   Leaderboard
-  <small data-showif="days_interval">(Last <span data-bind="days_interval"></span> days.)</small>
+  <small data-showif="days_interval">(Last <span data-bind="days_interval"></span> days)</small>
 </h1>
 
 <table>
@@ -35,6 +35,6 @@
 
 <p class="more-info">
   Activity score based on issues, pulls and comments.
-  Compares last 90 days to previous period.
+  Compares last <span data-bind="days_interval"></span> days to previous period.
   Hover scores for details.
 </p>
