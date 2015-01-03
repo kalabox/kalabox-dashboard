@@ -65,5 +65,6 @@ SCHEDULER.every '10m', :first_in => '1s' do |job|
 		rows: rows,
 		date_since: date_since.strftime("#{date_since.day.ordinalize} %b"),
 		date_until: date_until.strftime("#{date_until.day.ordinalize} %b"),
+		days_interval: days_interval,
 	})
 end
