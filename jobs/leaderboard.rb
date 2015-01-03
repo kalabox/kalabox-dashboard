@@ -6,7 +6,7 @@ require 'active_support/core_ext'
 require File.expand_path('../../lib/helper', __FILE__)
 require File.expand_path('../../lib/leaderboard', __FILE__)
 
-SCHEDULER.every '1h', :first_in => '1s' do |job|
+SCHEDULER.every '2m', :first_in => '1s' do |job|
 	backend = GithubBackend.new()
 	leaderboard = Leaderboard.new(backend)
 
@@ -21,10 +21,10 @@ SCHEDULER.every '1h', :first_in => '1s' do |job|
 	# Comparing current with last period, so need twice the interval
 	date_since = Time.at(date_until.to_i - days_interval*2)
 
-	actors = leaderboard.get( 
+	actors = leaderboard.get(
 		:days_interval => days_interval,
 		:date_until => date_until,
-		:orgas=>(ENV['ORGAS'].split(',') if ENV['ORGAS']), 
+		:orgas=>(ENV['ORGAS'].split(',') if ENV['ORGAS']),
 		:repos=>(ENV['REPOS'].split(',') if ENV['REPOS']),
 		:weighting=>weighting,
 		:edits_weighting=>edits_weighting,
@@ -43,7 +43,7 @@ SCHEDULER.every '1h', :first_in => '1s' do |job|
 		end
 
 		trend = GithubDashing::Helper.trend_percentage(
-			actor[1]['previous_score'], 
+			actor[1]['previous_score'],
 			actor[1]['current_score']
 		)
 

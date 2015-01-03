@@ -4,12 +4,12 @@ require 'dashing'
 require File.expand_path('../../lib/helper', __FILE__)
 
 
-SCHEDULER.every '1h', :first_in => '1s' do |job|
+SCHEDULER.every '2m', :first_in => '1s' do |job|
 	backend = GithubBackend.new()
 	series = [[],[]]
 	pulls_by_period = backend.pull_count_by_status(
-		:period=>'month', 
-		:orgas=>(ENV['ORGAS'].split(',') if ENV['ORGAS']), 
+		:period=>'month',
+		:orgas=>(ENV['ORGAS'].split(',') if ENV['ORGAS']),
 		:repos=>(ENV['REPOS'].split(',') if ENV['REPOS']),
 		:since=>ENV['SINCE'],
 	).group_by_month(ENV['SINCE'].to_datetime)
@@ -32,7 +32,7 @@ SCHEDULER.every '1h', :first_in => '1s' do |job|
 	trend_class = GithubDashing::Helper.trend_class(trend)
 
 	send_event(
-		'pull_requests', 
+		'pull_requests',
 		{
 			series: series, # Prepare for showing open/closed stacked
 			displayedValue: current,
