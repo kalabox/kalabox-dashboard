@@ -135,18 +135,19 @@ h2 .value-add {
 
 	&.travis {
 		background-color: #aaa;
-		font-size: 14px;
+		font-size: 1.3em;
 
 		ul {
 			margin: 0;
+			text-align: center;
 		}
 
 		li {
-			float: left;
-			margin: 0px 5px 5px 0;
+			float: none;
 			padding: 7px;
-			border-radius: 52px;
-			width: 350px;
+			border-radius: 28px;
+			width: 92%;
+			margin-left: 20px;
 
 			* {
 				vertical-align: middle;
