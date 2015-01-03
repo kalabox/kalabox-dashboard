@@ -33,7 +33,7 @@ class Leaderboard
 	# - skip_orga_members: (Array) Github organization names for which to exclude members.
 	def get(opts={})
 		default_opts = {
-			:days_interval => 365,
+			:days_interval => 90,
 			:limit => 15,
 			:edits_weighting => {
 				'commits_additions_max'=>100,

@@ -16,7 +16,7 @@ SCHEDULER.every '2m', :first_in => '1s' do |job|
 	edits_weighting = (ENV['LEADERBOARD_EDITS_WEIGHTING'] || '').split(',')
 			.inject({}) {|c,pair|c.merge Hash[*pair.split('=')]}
 
-	days_interval = 30
+	days_interval = 90
 	date_until = Time.now.to_datetime
 	# Comparing current with last period, so need twice the interval
 	date_since = Time.at(date_until.to_i - days_interval*2)
