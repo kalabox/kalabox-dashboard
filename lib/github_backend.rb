@@ -52,7 +52,7 @@ class GithubBackend
 				Raven.capture_exception(exception)
 			end
 		end
-		
+
 		return events
 	end
 
@@ -74,7 +74,7 @@ class GithubBackend
 				Raven.capture_exception(exception)
 			end
 		end
-		
+
 		return events
 	end
 
@@ -97,7 +97,7 @@ class GithubBackend
 				Raven.capture_exception(exception)
 			end
 		end
-		
+
 		return events
 	end
 
@@ -146,7 +146,7 @@ class GithubBackend
 				Raven.capture_exception(exception)
 			end
 		end
-		
+
 		return events
 	end
 
@@ -157,7 +157,7 @@ class GithubBackend
 		self.get_repos(opts).each do |repo|
 			begin
 				issues = request('issues', [repo, {:since => opts.since,:state => 'all'}])
-				
+
 				# Filter to issues in the specified timeframe
 				issues.select! do|issue|
 					date_at = (issue.state == 'open') ? 'created_at' : 'closed_at'
@@ -186,8 +186,53 @@ class GithubBackend
 		return events
 	end
 
+		# Returns EventCollection
+	def issue_count_by_points(opts)
+		opts = OpenStruct.new(opts) unless opts.kind_of? OpenStruct
+		events = GithubDashing::EventCollection.new
+		self.get_repos(opts).each do |repo|
+			begin
+				issues = request('issues', [repo, {:since => opts.since,:state => 'closed'}])
+
+				issues.each do |issue|
+					points = 0
+					if issue.labels.empty?
+						# for some reason some issues don't report labels even though they
+						# have them. should fix this later.
+						#labels = request('labels_for_issue', [repo, {:number => issue.number}, {}])
+						# This is the average point value of an issue which we will
+						# use as a "correction factor" until the above is resolved
+						points = 2
+					else
+						issue.labels.each do |label|
+							if label.name == '1'
+								points = points + 1
+							elsif label.name == '3'
+								points = points + 3
+							elsif label.name == '9'
+								points = points + 9
+							end
+						end
+					end
+
+					events << GithubDashing::Event.new({
+						type: "issue_count_points",
+						datetime: issue.closed_at.to_datetime,
+						key: issue.state.dup,
+						value: points
+					})
+
+				end
+			rescue Octokit::Error => exception
+				Raven.capture_exception(exception)
+			end
+		end
+
+		return events
+	end
+
 	# TODO Break up by actual status, currently not looking at closed_at date
-	# 
+	#
 	# Returns EventCollection
 	def pull_count_by_status(opts)
 		opts = OpenStruct.new(opts) unless opts.kind_of? OpenStruct
@@ -209,7 +254,7 @@ class GithubBackend
 				Raven.capture_exception(exception)
 			end
 		end
-		
+
 		return events
 	end
 
