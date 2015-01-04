@@ -7,7 +7,7 @@ require File.expand_path('../../lib/travis_backend', __FILE__)
 
 $lastTravisItems = []
 
-SCHEDULER.every '10m', :first_in => '1s' do |job|
+SCHEDULER.every '1m', :first_in => '1s' do |job|
 	travis_backend = TravisBackend.new
 	repo_slugs = []
 	builds = []

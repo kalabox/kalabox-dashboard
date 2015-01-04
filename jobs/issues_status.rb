@@ -4,7 +4,7 @@ require 'dashing'
 require 'active_support/core_ext'
 require File.expand_path('../../lib/helper', __FILE__)
 
-SCHEDULER.every '10m', :first_in => '1s' do |job|
+SCHEDULER.every '2m', :first_in => '1s' do |job|
 	backend = GithubBackend.new()
 	opened_series = [[],[]]
 	closed_series = [[],[]]
