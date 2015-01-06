@@ -6,7 +6,7 @@ require 'active_support/core_ext'
 require File.expand_path('../../lib/helper', __FILE__)
 require File.expand_path('../../lib/leaderboard', __FILE__)
 
-SCHEDULER.every '5m', :first_in => '1s' do |job|
+SCHEDULER.every '15m', :first_in => '1s' do |job|
 	backend = GithubBackend.new()
 	leaderboard = Leaderboard.new(backend)
 

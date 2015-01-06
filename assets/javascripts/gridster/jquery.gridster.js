@@ -1253,7 +1253,8 @@
             !this.can_move_to(
              {size_x: wgd.size_x, size_y: wgd.size_y}, wgd.col, wgd.row)
         ) {
-            wgd = this.next_position(wgd.size_x, wgd.size_y);
+            // HACK THE PLANET
+            //wgd = this.next_position(wgd.size_x, wgd.size_y);
             wgd.el = $el;
             $el.attr({
                 'data-col': wgd.col,
@@ -3241,7 +3242,7 @@
         if(this.drag_api){
             this.drag_api.destroy();
         }
-        
+
         // lastly, remove gridster element
         // this will additionally cause any data associated to this element to be removed, including this
         // very gridster instance

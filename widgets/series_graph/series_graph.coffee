@@ -1,4 +1,4 @@
-class Dashing.SeriesGraph extends Dashing.Widget
+ class Dashing.SeriesGraph extends Dashing.Widget
 
   @accessor 'current', ->
     return @get('displayedValue') if @get('displayedValue')
@@ -15,19 +15,21 @@ class Dashing.SeriesGraph extends Dashing.Widget
 
     # Rickshaw causes exceptions when asked to render an empty series
     return unless series && series[0] && series[0].length > 1
-    
-    if $(@node).data("colorscheme") 
+
+    if $(@node).data("colorscheme")
       scheme = $(@node).data("colorscheme")
-    else if $(@node).data("colors") 
+    else if $(@node).data("colors")
       scheme = $(@node).data("colors").split(' ')
-    else 
+    else
       scheme = 'spectrum14'
     palette = new Rickshaw.Color.Palette({scheme: scheme})
-    
+
     seriesCombined = []
     for data,i in series
       seriesCombined[i] = {data: data, color: palette.color()}
-    
+
+      #console.log seriesCombined
+
     @graph = new Rickshaw.Graph(
       element: @node
       renderer: $(@node).data("renderer") || 'area'
