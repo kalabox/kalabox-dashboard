@@ -1253,8 +1253,8 @@
             !this.can_move_to(
              {size_x: wgd.size_x, size_y: wgd.size_y}, wgd.col, wgd.row)
         ) {
-            // HACK THE PLANET
-            //wgd = this.next_position(wgd.size_x, wgd.size_y);
+            
+            wgd = this.next_position(wgd.size_x, wgd.size_y);
             wgd.el = $el;
             $el.attr({
                 'data-col': wgd.col,
